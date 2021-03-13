@@ -1,0 +1,1 @@
+# NanoPi-R2S-R4S-2021-mini
