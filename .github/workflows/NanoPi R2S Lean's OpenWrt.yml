@@ -23,7 +23,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-20.04
-    if: github.repository == 'DHDAXCW/NanoPi-R2S-2021'
+    if: github.repository == 'DHDAXCW/NanoPi-R2S-R4S-2021-mini'
 
     steps:
     - name: Checkout
