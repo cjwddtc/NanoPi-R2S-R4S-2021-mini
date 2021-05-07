@@ -1,4 +1,4 @@
-name: NanoPi R4S Lean's OpenWrt
+name: NanoPi R2S-R4S OpenWrt
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -240,7 +240,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: ${{ steps.tag.outputs.release_date }} Lean OpenWrt
+          name: ${{ steps.tag.outputs.release_date }} 精简版 OpenWrt
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: release.txt
           files: ${{ env.FIRMWARE }}/*
