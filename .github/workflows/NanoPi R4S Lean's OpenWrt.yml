@@ -1,9 +1,9 @@
-name: NanoPi R2S-R4S OpenWrt
+name: NanoPi R4S OpenWrt
 on:
   repository_dispatch:
   workflow_dispatch:
   schedule:
-    - cron: 0 23 * * *
+    - cron: 0 00 * * *
   # watch:
   #   types: started
 
