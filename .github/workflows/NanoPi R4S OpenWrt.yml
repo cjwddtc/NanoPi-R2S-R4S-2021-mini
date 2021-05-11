@@ -52,9 +52,19 @@ jobs:
         git config --global user.name "GitHub"
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
-        chmod +x ./target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
-        chmod +x ./target/linux/rockchip/armv8/base-files/etc/board.d/02_network
-        
+        svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/r8168 package/new/r8168
+        wget -O- https://www.cooluc.com/openwrt/PATCH/new/main/r8168-fix_LAN_led-for_r4s-from_TL.patch | patch -p1
+        rm -rf ./target/linux/rockchip
+        rm -rf ./package/boot/uboot-rockchip
+        svn co https://github.com/immortalwrt/immortalwrt/branches/master/target/linux/rockchip target/linux/rockchip
+        svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/boot/uboot-rockchip package/boot/uboot-rockchip
+        svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/boot/arm-trusted-firmware-rk3328 package/boot/arm-trusted-firmware-rk3328
+        curl -s  https://www.cooluc.com/openwrt/patch/R4S/files/etc/board.d/01_leds > target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
+        curl -s  https://www.cooluc.com/openwrt/patch/R4S/files/etc/board.d/02_network > target/linux/rockchip/armv8/base-files/etc/board.d/02_network
+        chmod 0755 target/linux/rockchip/armv8/base-files/etc/board.d/*
+        rm -rf ./target/linux/rockchip/patches-5.4/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
+        curl -s  https://www.cooluc.com/openwrt/patch/new/main/991-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch >./target/linux/rockchip/patches-5.4/991-rockchip-rk3399-overclock-to-2.2-1.8-GHz-for-NanoPi4.patch
+        curl -s  https://www.cooluc.com/openwrt/patch/new/main/213-RK3399-set-critical-CPU-temperature-for-thermal-throttling.patch >./target/linux/rockchip/patches-5.4/213-RK3399-set-critical-CPU-temperature-for-thermal-throttling.patch
     - name: Update Feeds
       id: update
       run: |
