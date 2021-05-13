@@ -21,7 +21,7 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-vssr
 
 # Add luci-app-bypass
 git clone https://github.com/garypang13/luci-app-bypass
-git clone https://github.com/garypang13/openwrt-packages/tree/master/lua-maxminddb
+svn co https://github.com/garypang13/openwrt-packages/trunk/lua-maxminddb
 git clone https://github.com/garypang13/smartdns-le
 
 # Add mentohust & luci-app-mentohust
