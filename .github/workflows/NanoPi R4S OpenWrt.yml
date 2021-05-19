@@ -22,7 +22,7 @@ env:
 jobs:
   Build:
     runs-on: ubuntu-18.04
-    if: github.repository == 'DHDAXCW/NanoPi-R2S-R4S-2021-mini'
+    if: github.repository == 'cjwddtc/NanoPi-R2S-R4S-2021-mini'
     outputs:
       OPENWRTROOT: ${{ steps.update.outputs.OPENWRTROOT }}
       PLATFORM: ${{ steps.compile.outputs.PLATFORM }}
