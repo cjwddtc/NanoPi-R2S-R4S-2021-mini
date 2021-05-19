@@ -103,6 +103,7 @@ jobs:
     - name: Compile Packages
       id: compile
       run: |
+        ccache -s
         cd $OPENWRTROOT
         echo -e "$(nproc) thread compile"
         make tools/compile -j$(nproc) || make tools/compile -j1 V=s
