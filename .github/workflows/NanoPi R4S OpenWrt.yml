@@ -34,7 +34,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@main
-
+    - name: Cache ccache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.ccache
+        key: r4s_ccache
     - name: Initialization Environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -120,6 +125,9 @@ jobs:
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=FIRMWARE::$(echo $PWD)"
         echo "::set-output name=COMPILE_STATUS::success"
+        # print the ccache status for this compile
+        ccache -s
+        
     - name: Generate Firmware
       if: steps.compile.outputs.COMPILE_STATUS == 'success'
       id: generate
