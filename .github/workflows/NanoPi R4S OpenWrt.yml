@@ -38,8 +38,8 @@ jobs:
       uses: actions/cache@v2
       with:
         path: |
-          ~/.ccache
-        key: r4s_ccache
+          ~/build_dir
+        key: r4s_build_dir
     - name: Initialization Environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -93,6 +93,8 @@ jobs:
         then
             echo "CONFIG_ALL_NONSHARED=y" >> .config
         fi
+        mkdir -p ~/build_dir
+        ln -s ~/build_dir build_dir
         make defconfig
         ../scripts/modify_config.sh
         cat .config
